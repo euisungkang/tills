@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>606163992405-cccqu6lcsukp9odnp813thbl1bcidmum.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.606163992405-cccqu6lcsukp9odnp813thbl1bcidmum</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB3LViyZp_OBZ6VEVmOzwiY07yuWxeWrG8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>606163992405</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Tills.Tills</string>
+	<key>PROJECT_ID</key>
+	<string>tillsdb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tillsdb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:606163992405:ios:3be13abb1dd8c70f5d39dc</string>
+	<key>DATABASE_URL</key>
+	<string>https://tillsdb.firebaseio.com</string>
+</dict>
+</plist>
