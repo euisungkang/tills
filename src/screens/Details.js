@@ -4,6 +4,9 @@ import Image from 'react-native-scalable-image';
 import colors from '../styles/colors';
 
 export default class Details extends React.Component {
+
+  static navigationOptions = { headerShown: false };
+
   render() { 
     const { navigation } = this.props;
     const item = navigation.getParam('item', "NO_ITEM");

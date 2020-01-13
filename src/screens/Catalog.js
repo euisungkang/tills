@@ -1,20 +1,63 @@
 import React from 'react';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../styles/colors';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList, TextInput } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import firebase from 'react-native-firebase';
 
 export default class Catalog extends React.Component {
+
+  static navigationOptions = { headerShown: false };
+
   constructor(props) {
     super(props);
 
+    this.renderHeader = this.renderHeader.bind(this);
+
     this.state = {
       collArray: [],
+      loading: false,
+      error: null,
     };
   }
 
   fillArray(bufferArray) {
     this.setState({collArray: bufferArray});
+  }
+
+  renderHeader = () => {
+    return(
+      <SearchBar
+        placeholder = "Try 'Xerographica'"
+        lightTheme = {true}
+        placeholderTextColor = "grey" 
+        onChangeText = {(text) => { this.searchFilterFunction(text) }}
+        autoCorrect = { false }
+        containerStyle = {{
+          backgroundColor: colors.white,
+          borderBottomColor: colors.white,
+          borderTopColor: colors.white,
+          flex: 1,
+        }}
+        inputContainerStyle= {{ backgroundColor: colors.white }}
+        inputStyle =  {{ backgroundColor: colors.white }}
+        searchIcon = { false }
+      />
+    );
+  }
+
+  arrayHolder = [];
+
+  searchFilterFunction = (text) => {
+    console.log(text);
+    const newData = this.state.collArray.filter(item => {
+      const itemData = item.name.toUpperCase();
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > - 1;
+    });
+
+    this.setState({ data: newData });
   }
 
   render() {  
@@ -34,22 +77,13 @@ export default class Catalog extends React.Component {
         <View style = {styles.container}>
           <Text style = {styles.header}>Tills</Text>
 
-          <View style = {styles.search}>
-            {/* <Icon name = "ios-search" style = {styles.searchIcon} /> */}
-            <TextInput placeholder = "Try 'Xerographica'"
-                        placeholderTextColor = "grey" 
-                        style = {styles.searchInput} />
-          </View>
-
           <View style = {styles.catalog}>
-            <Text>Tillandsia Catalog</Text>
-
             <FlatList 
               data = {this.state.collArray}
               renderItem = {({ item }) => <Item navigation = {this.props.navigation}
                                                 item = {item} />}
               keyExtractor = {item => item.id}
-              removeClippedSubviews= {false} 
+              ListHeaderComponent = {this.renderHeader()}
             />
           </View>
         </View>
@@ -77,23 +111,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     marginHorizontal: 20,
+    marginBottom: 50,
   },
   header: {
     fontSize: 32,
     margin: 10
   },
-  searchIcon: {
-    marginRight: 15,
-    fontSize: 40
-  },
-  searchInput: {
-    fontWeight: "700",
-    flex: 1
-  },
   search: {
     flexDirection: "row",
     backgroundColor: colors.white,
-    padding: 10,
+    padding: 20,
     marginBottom: 30,
     shadowOffset: { width: 0, height: 0 },
     shadowColor: "black",

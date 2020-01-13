@@ -6,12 +6,16 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 const MainNavigator = createStackNavigator(
   {
-    CatalogScreen: Catalog,
-    DetailsScreen: Details,
+    CatalogScreen: {
+      screen: Catalog,
+    },
+    DetailsScreen: {
+      screen: Details,
+    }
   },
   {
     initialRouteName: 'CatalogScreen',
-  }
+  },
 );
 
 const AppContainer = createAppContainer(MainNavigator);
