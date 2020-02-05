@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../styles/colors';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, FlatList, Animated } from 'react-native';
 import { SearchBar } from 'react-native-elements';
@@ -12,6 +11,7 @@ export default class Catalog extends React.Component {
   constructor(props) {
     super(props);
 
+    //Initialize array with data from firestore database
     let bufferArray;
     firebase.firestore().collection('tillandsias').get()
                         .then((querySnapshot) => {
@@ -31,6 +31,7 @@ export default class Catalog extends React.Component {
     };
   }
    
+  //Will animate the search bar transition from home -> search
   animateSearchBar = () => {
     console.log("Animated");
     Animated.timing(this.state.searchOpacity, {
@@ -40,17 +41,20 @@ export default class Catalog extends React.Component {
     }).start()
   }
 
+  //Function to filter the flat list of tillandsias.
   searchFilterFunction = (text) => {
     const newData = this.state.tillArray.filter(item => {
-      const itemData = item.name.toUpperCase();
+      const itemName = item.name.toUpperCase();
+      const itemSynonym = item.synonym.toUpperCase();
       const textData = text.toUpperCase();
 
-      return itemData.indexOf(textData) > - 1;
+      return (itemName.indexOf(textData) > -1) || (itemSynonym.indexOf(textData) > -1);
     });
 
     this.setState({ searchArray: newData, search: text });
   }
 
+  //Function to display either home or actual search
   displayScreenOrCatalog = () => {
     if (this.state.searchLayover == true) {
       return(
@@ -93,6 +97,7 @@ export default class Catalog extends React.Component {
     }
   }
 
+  //Helper function to display search catalog
   displayCatalog = () => {
     this.setState({
       searchLayover: true
@@ -110,6 +115,7 @@ export default class Catalog extends React.Component {
   }
 }
 
+//Item definition, represents an individual tillandsia in the flat list
 function Item({item, navigation}) {
   return (
     <TouchableOpacity onPress = {() => navigation.navigate('DetailsScreen', {item: item})}>
@@ -122,11 +128,13 @@ function Item({item, navigation}) {
           </Text>
         </Card> */}
         <Text style = {styles.itemTitle}>{item.name}</Text>
+        <Text style = {styles.itemSubTitle}>{item.synonym}</Text>
       </View>
     </TouchableOpacity>
   );
 }
 
+//Start of CSS
 const styles = StyleSheet.create({
   notchContainer: {
     flex: 1,
@@ -173,5 +181,8 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 32
+  },
+  itemSynonym: {
+    fontSize: 20
   },
 });
