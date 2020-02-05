@@ -70,7 +70,7 @@ export default class Catalog extends React.Component {
             data = {this.state.searchArray}
             renderItem = {({ item }) => <Item navigation = {this.props.navigation}
                                               item = {item} />}
-            keyExtractor = {item => item.id}
+            keyExtractor = {item => item.key}
           />
         </View>
       );
@@ -114,6 +114,13 @@ function Item({item, navigation}) {
   return (
     <TouchableOpacity onPress = {() => navigation.navigate('DetailsScreen', {item: item})}>
       <View style = {styles.item}>
+        {/* <Card
+          title={item.name}
+          image={{ uri: item.img }}>
+          <Text style={{marginBottom: 10}}>
+            {item.name}
+          </Text>
+        </Card> */}
         <Text style = {styles.itemTitle}>{item.name}</Text>
       </View>
     </TouchableOpacity>

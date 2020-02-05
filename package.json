@@ -11,11 +11,10 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.5",
-    "firebase-admin": "^8.9.0",
+    "firebase-admin": "^8.9.2",
     "react": "16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "0.61.5",
-    "react-native-cli": "^2.0.1",
     "react-native-elements": "^1.2.7",
     "react-native-firebase": "~5.6.0",
     "react-native-gesture-handler": "^1.5.3",
@@ -27,7 +26,8 @@
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^2.0.13"
+    "react-navigation-stack": "^2.0.13",
+    "yarn": "^1.21.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

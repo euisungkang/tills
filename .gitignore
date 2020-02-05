@@ -4,6 +4,8 @@
 
 # Xcode
 #
+./serviceKey.json
+
 build/
 *.pbxuser
 !default.pbxuser

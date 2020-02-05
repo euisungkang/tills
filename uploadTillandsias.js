@@ -12,9 +12,9 @@ const settings = {timestampsInSnapshots: true};
 firestore.settings(settings);
 if (data && (typeof data === "object")) {
 Object.keys(data).forEach(docKey => {
-  console.log(docKey);
- firestore.collection(collectionKey).doc(docKey).set(data[docKey]).then((res) => {
-    console.log("Document " + docKey + " successfully written!");
+  console.log(data[docKey].key);
+ firestore.collection(collectionKey).doc(data[docKey].key).set(data[docKey]).then((res) => {
+    console.log("Document " + data[docKey].key + " successfully written!");
 }).catch((error) => {
    console.error("Error writing document: ", error);
 });
