@@ -27,7 +27,7 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.13",
-    "yarn": "^1.21.1"
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
